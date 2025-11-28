@@ -1,0 +1,5 @@
+{
+  "name": "BSS Архитектор",
+  "description": "Помощник для Bee Swarm Simulator: создание улья, анализ мета-билдов и планирование прогрессии.",
+  "requestFramePermissions": []
+}
