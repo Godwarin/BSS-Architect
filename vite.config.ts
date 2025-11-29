@@ -5,6 +5,8 @@ import react from '@vitejs/plugin-react';
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, '.', '');
     return {
+      // Use a relative base so the app can be served from GitHub Pages
+      base: './',
       server: {
         port: 3000,
         host: '0.0.0.0',
