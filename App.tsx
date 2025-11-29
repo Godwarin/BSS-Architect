@@ -4,7 +4,6 @@ import { BEES, GEAR_OPTIONS, HIVE_PRESETS } from './constants';
 import { HiveGrid } from './components/HiveGrid';
 import { AnalysisPanel } from './components/AnalysisPanel';
 import { ProgressionGuide } from './components/ProgressionGuide';
-import { AdvisorPanel } from './components/AdvisorPanel';
 import { getRarityColor, exportHive } from './utils/hiveUtils';
 import { Save, Upload, Hexagon, BarChart3, BookOpen, Trash2, Sparkles, BrainCircuit, PaintBucket, LayoutTemplate } from 'lucide-react';
 
@@ -168,12 +167,6 @@ const App: React.FC = () => {
             <Hexagon size={16} /> Создание улья
           </button>
           <button 
-            onClick={() => setActiveTab('advisor')}
-            className={`py-4 text-sm font-medium border-b-2 flex items-center gap-2 transition-colors whitespace-nowrap ${activeTab === 'advisor' ? 'border-purple-500 text-purple-400' : 'border-transparent text-slate-400 hover:text-white'}`}
-          >
-            <BrainCircuit size={16} /> Советник
-          </button>
-          <button 
             onClick={() => setActiveTab('analysis')}
             className={`py-4 text-sm font-medium border-b-2 flex items-center gap-2 transition-colors whitespace-nowrap ${activeTab === 'analysis' ? 'border-blue-500 text-blue-400' : 'border-transparent text-slate-400 hover:text-white'}`}
           >
@@ -202,15 +195,6 @@ const App: React.FC = () => {
                    <LayoutTemplate size={14} /> Шаблоны и Инструменты
                  </h3>
                  
-                 <select 
-                   className="w-full bg-slate-800 border border-slate-700 rounded p-2 text-sm text-slate-300"
-                   onChange={(e) => { if(e.target.value) loadPreset(e.target.value); e.target.value=""; }}
-                 >
-                   <option value="">-- Загрузить шаблон --</option>
-                   {Object.keys(HIVE_PRESETS).map(key => (
-                     <option key={key} value={key}>{key}</option>
-                   ))}
-                 </select>
 
                  <div className="grid grid-cols-2 gap-2">
                     <button 
@@ -227,13 +211,7 @@ const App: React.FC = () => {
                     </button>
                  </div>
                  
-                 <button 
-                    onClick={fillEmptySlots}
-                    disabled={!selectedBee || selectedBee === "Eraser"}
-                    className="w-full flex items-center justify-center gap-2 p-2 rounded text-xs font-bold bg-blue-900/40 border border-blue-500 text-blue-400 hover:bg-blue-800/40 disabled:opacity-50 disabled:cursor-not-allowed"
-                 >
-                   <PaintBucket size={14} /> Заполнить пустые ({selectedBee || 'Ничего'})
-                 </button>
+                 {/* Templates removed per request - presets are hidden */}
 
                  <button onClick={clearHive} className="text-xs text-red-500 hover:underline w-full text-center">
                    Очистить все слоты
@@ -354,7 +332,7 @@ const App: React.FC = () => {
           </div>
         )}
 
-        {activeTab === 'advisor' && <AdvisorPanel hive={hive} gear={gear} />}
+        {/* Advisor tab removed */}
         {activeTab === 'analysis' && <AnalysisPanel hive={hive} gear={gear} />}
         {activeTab === 'guide' && <ProgressionGuide />}
 
