@@ -54,7 +54,7 @@ export const HiveGrid: React.FC<HiveGridProps> = ({
                 <div className="flex flex-col items-center pointer-events-none">
                   {/* bee icon from /public/bees/<slug>.png - fallback to text if not present */}
                   <img
-                    src={`/bees/${slot.bee.toLowerCase().replace(/[^a-z0-9]+/gi, '-')}.png`}
+                    src={`${import.meta.env.BASE_URL}bees/${slot.bee.toLowerCase().replace(/[^a-z0-9]+/gi, '-')}.png`}
                     alt={slot.bee}
                     className="w-10 h-10 object-contain mb-1"
                     onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
