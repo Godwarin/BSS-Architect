@@ -40,6 +40,17 @@ export const AnalysisPanel: React.FC<AnalysisPanelProps> = ({ hive, gear }) => {
     if (slot.gifted) totalGifted++;
   });
 
+  // Compute color profile from selected meta composition (so UI reflects selected meta)
+  const metaColorTotals = { red: 0, blue: 0, colorless: 0 };
+  Object.entries(selectedMeta.composition).forEach(([beeName, cnt]) => {
+    const def = findBeeDef(beeName);
+    if (def) {
+      if (def.color === 'Red') metaColorTotals.red += cnt as number;
+      if (def.color === 'Blue') metaColorTotals.blue += cnt as number;
+      if (def.color === 'Colorless') metaColorTotals.colorless += cnt as number;
+    }
+  });
+
   // Calculate Difference
   const differences: { bee: string; diff: number; current: number; target: number }[] = [];
   
@@ -56,32 +67,25 @@ export const AnalysisPanel: React.FC<AnalysisPanelProps> = ({ hive, gear }) => {
   });
 
   // Wiki Analysis Logic (Detailed)
-  const getFarmingPrediction = () => {
-    const blueRatio = blueBees / (redBees + blueBees + colorlessBees || 1);
-    const redRatio = redBees / (redBees + blueBees + colorlessBees || 1);
-    
-    if (blueRatio > 0.6) {
-        return {
-            source: "Blue Boost + Bubbles + Balloons",
-            desc: "Улей оптимизирован под макрос на Pine Tree Forest. Основной доход от Pop Star + Balloon Blessing.",
-            eff: "Высокая для AFK"
-        };
-    }
-    if (redRatio > 0.6) {
-        return {
-            source: "Red Boost + Precision + Flames",
-            desc: "Улей для активной игры на Pepper/Rose. Доход от Super Crits и Star Saw конверсии.",
-            eff: "Высокая для Boosts"
-        };
-    }
-    return {
-        source: "Mixed (Quests)",
-        desc: "Сбалансированный сбор. Хорош для квестов Spirit Bear, но проигрывает цветным ульям по меду в 10-100 раз.",
-        eff: "Средняя"
+  // Produce a farming prediction based on the selected meta (so it changes when user picks meta)
+  const prediction = (() => {
+    const name = selectedMeta.name.toLowerCase();
+    if (name.includes('blue')) return {
+      source: "Blue Boost + Bubbles + Balloons",
+      desc: selectedMeta.description,
+      eff: "Высокая для AFK"
     };
-  };
-
-  const prediction = getFarmingPrediction();
+    if (name.includes('red')) return {
+      source: "Red Boost + Precision + Flames",
+      desc: selectedMeta.description,
+      eff: "Высокая для Boosts"
+    };
+    return {
+      source: "Mixed (Quests)",
+      desc: selectedMeta.description,
+      eff: "Средняя"
+    };
+  })();
 
   return (
     <div className="space-y-6 animate-fadeIn">
@@ -125,16 +129,16 @@ export const AnalysisPanel: React.FC<AnalysisPanelProps> = ({ hive, gear }) => {
              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                  <div>
                      <div className="text-sm text-slate-400 mb-2 font-bold uppercase">Цветовой профиль</div>
-                     <div className="flex h-4 rounded-full overflow-hidden bg-slate-800 mb-2">
-                        <div style={{ width: `${(redBees / 50) * 100}%` }} className="bg-red-500 transition-all"></div>
-                        <div style={{ width: `${(blueBees / 50) * 100}%` }} className="bg-blue-500 transition-all"></div>
-                        <div style={{ width: `${(colorlessBees / 50) * 100}%` }} className="bg-slate-200 transition-all"></div>
-                     </div>
-                     <div className="flex justify-between text-xs text-slate-400">
-                        <span>Red: {Math.round((redBees / 50) * 100)}%</span>
-                        <span>Blue: {Math.round((blueBees / 50) * 100)}%</span>
-                        <span>White: {Math.round((colorlessBees / 50) * 100)}%</span>
-                     </div>
+                    <div className="flex h-4 rounded-full overflow-hidden bg-slate-800 mb-2">
+                      <div style={{ width: `${(metaColorTotals.red / 50) * 100}%` }} className="bg-red-500 transition-all"></div>
+                      <div style={{ width: `${(metaColorTotals.blue / 50) * 100}%` }} className="bg-blue-500 transition-all"></div>
+                      <div style={{ width: `${(metaColorTotals.colorless / 50) * 100}%` }} className="bg-slate-200 transition-all"></div>
+                    </div>
+                    <div className="flex justify-between text-xs text-slate-400">
+                      <span>Red: {Math.round((metaColorTotals.red / 50) * 100)}%</span>
+                      <span>Blue: {Math.round((metaColorTotals.blue / 50) * 100)}%</span>
+                      <span>White: {Math.round((metaColorTotals.colorless / 50) * 100)}%</span>
+                    </div>
                  </div>
 
                  <div>
@@ -216,9 +220,9 @@ export const AnalysisPanel: React.FC<AnalysisPanelProps> = ({ hive, gear }) => {
                 Проверка снаряжения
              </h4>
              <div className="space-y-3">
-               {selectedMeta.recommendedGear && Object.entries(selectedMeta.recommendedGear).map(([slot, recItem]) => {
-                  const currentItem = gear[slot as keyof GearState];
-                  const isMatch = currentItem === recItem || recItem === 'Any';
+              {selectedMeta.recommendedGear && Object.entries(selectedMeta.recommendedGear).map(([slot, recItem]) => {
+                const currentItem = gear[slot as keyof GearState];
+                const isMatch = currentItem === recItem || recItem === 'Any';
                   return (
                     <div key={slot} className="flex justify-between items-center bg-slate-800 p-3 rounded-lg border border-slate-700">
                        <div>
@@ -229,21 +233,22 @@ export const AnalysisPanel: React.FC<AnalysisPanelProps> = ({ hive, gear }) => {
                        </div>
                        <div className="text-right">
                           <div className="text-xs text-slate-500">У вас:</div>
-                          <div className={`text-sm ${isMatch ? 'text-slate-300' : 'text-slate-100 underline decoration-red-500'}`}>{currentItem}</div>
+                      <div className={`text-sm ${isMatch ? 'text-slate-300' : 'text-slate-100 underline decoration-red-500'}`}>{currentItem || 'None'}</div>
                        </div>
                     </div>
                   )
                })}
                <div className="mt-4 pt-4 border-t border-slate-700">
                   <div className="text-xs text-slate-500 mb-1">SSA Passives Status:</div>
-                  <div className="flex gap-2 text-sm">
-                      <span className={selectedMeta.requiredPassive.includes(gear.ssa_passive_1) ? "text-green-400" : "text-red-400"}>
-                          {gear.ssa_passive_1}
-                      </span>
-                      <span>+</span>
-                      <span className={selectedMeta.requiredPassive.includes(gear.ssa_passive_2) ? "text-green-400" : "text-slate-500"}>
-                          {gear.ssa_passive_2}
-                      </span>
+                  <div className="flex gap-2 text-sm items-center flex-wrap">
+                      {selectedMeta.requiredPassive.map((p) => {
+                        const has = p === gear.ssa_passive_1 || p === gear.ssa_passive_2;
+                        return (
+                          <span key={p} className={has ? "text-green-400 mr-2" : "text-red-400 mr-2"}>
+                            {p}
+                          </span>
+                        );
+                      })}
                   </div>
                </div>
              </div>

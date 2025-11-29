@@ -24,6 +24,7 @@ export interface BuildTarget {
     belt?: string;
     guards?: string;
     bag?: string;
+    tool?: string;
   };
 }
 
@@ -33,6 +34,7 @@ export interface GearState {
   boots: string;
   belt: string;
   guards: string;
+  tool?: string;
   ssa_passive_1: string;
   ssa_passive_2: string;
 }

@@ -3,7 +3,6 @@ import { BeeDef, BuildTarget } from './types';
 export const BEES: BeeDef[] = [
   // Event
   { name: 'Tabby Bee', rarity: 'Event', color: 'Colorless' },
-  { name: 'Photon Bee', rarity: 'Event', color: 'Colorless' },
   { name: 'Bear Bee', rarity: 'Event', color: 'Colorless' },
   { name: 'Gummy Bee', rarity: 'Event', color: 'Colorless' },
   { name: 'Vicious Bee', rarity: 'Event', color: 'Blue' },
@@ -63,7 +62,8 @@ export const META_BUILDS: BuildTarget[] = [
       bag: "Coconut Canister",
       boots: "Coconut Clogs",
       guards: "Crimson/Cobalt Guards",
-      belt: "Petal Belt"
+      belt: "Petal Belt",
+      tool: "Tide Popper"
     },
     composition: {
       "Buoyant Bee": 18,
@@ -95,7 +95,6 @@ export const META_BUILDS: BuildTarget[] = [
       "Tabby Bee": 1,
       "Bear Bee": 1,
       "Digital Bee": 1,
-      "Photon Bee": 1,
       "Festive Bee": 1,
       "Crimson Bee": 1,
       "Baby Bee": 3,
@@ -105,7 +104,7 @@ export const META_BUILDS: BuildTarget[] = [
   {
     name: "White Hive (RNG/Gummy)",
     description: "Самый дорогой улей. Требует двойной пассивки (Gummy + Saw) и много ресурсов. Завязан на Gummy Star.",
-    requiredPassive: ["Gummy Star", "Star Saw"],
+    requiredPassive: ["Pop Star", "Gummy Star", "Star Saw"],
     recommendedGear: {
       mask: "Gummy Mask",
       bag: "Coconut Canister",
@@ -120,7 +119,6 @@ export const META_BUILDS: BuildTarget[] = [
       "Tabby Bee": 1,
       "Bear Bee": 1,
       "Gummy Bee": 1,
-      "Photon Bee": 1,
       "Windy Bee": 1,
       "Digital Bee": 1,
       "Festive Bee": 1,
@@ -153,7 +151,7 @@ export const META_BUILDS: BuildTarget[] = [
   },
   {
     name: "Tad Alt (ATLAS)",
-    description: "Максимальный спам лягушками. Все Tadpole и Fuzzy должны быть одаренными.",
+    description: "Максимальный спам лягушками. Все Tadpole и Fuzzy должны быть одаренными. Также осуждаю читы, этот билд просто мои мысли не более. я люблю онетта",
     requiredPassive: ["Pop Star", "Scorching Star"],
     recommendedGear: {
       mask: "Gummy Mask",
@@ -175,12 +173,15 @@ export const META_BUILDS: BuildTarget[] = [
 
 export const GEAR_OPTIONS = {
   masks: ["None", "Honey Mask", "Bubble Mask", "Fire Mask", "Gummy Mask", "Diamond Mask", "Demon Mask"],
-  bags: ["None", "Porcelain Port-O-Hive", "Mountain Top Bag", "Coconut Canister"],
-  boots: ["None", "Gummy Boots", "Coconut Clogs", "Coco Boots (Test)"],
+  bags: ["None", "Porcelain Port-O-Hive", "Coconut Canister"],
+  boots: ["None", "Gummy Boots", "Coconut Clogs"],
   belts: ["None", "Honeycomb Belt", "Petal Belt", "Coco Belt"],
   guards: ["None", "Riley/Bucko Guards", "Crimson/Cobalt Guards", "Elite Red/Blue Guards"],
   passives: ["None", "Pop Star", "Scorching Star", "Gummy Star", "Star Saw", "Star Shower", "Guiding Star"]
 };
+
+// New tool items
+GEAR_OPTIONS['tools'] = ["None", "Porcelain Dipper", "Petal Wand", "Tide Popper", "Dark Scythe", "Gummyballer"];
 
 export const HIVE_PRESETS = {
   "Bleached Hive (Новичок)": Array(50).fill(null).map((_, i) => {
@@ -192,7 +193,7 @@ export const HIVE_PRESETS = {
   "Midgame Mixed (35 пчел)": Array(50).fill(null).map((_, i) => {
     if (i > 35) return null; // Locked slots
     if (i === 0) return "Tabby Bee";
-    if (i === 1) return "Photon Bee";
+    if (i === 1) return "Windy Bee";
     if (i === 2) return "Vicious Bee";
     if (i === 3) return "Gummy Bee";
     if (i < 8) return "Music Bee";

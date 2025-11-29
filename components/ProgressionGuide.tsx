@@ -26,10 +26,10 @@ export const ProgressionGuide: React.FC = () => {
             </li>
             <li className="pl-6 relative">
               <span className="absolute -left-3 top-1 w-6 h-6 bg-slate-600 rounded-full flex items-center justify-center text-white font-bold text-xs">2</span>
-              <h3 className="font-bold text-white text-lg">Photon Bee</h3>
+              <h3 className="font-bold text-white text-lg">Gummy Bee</h3>
               <p className="text-sm mt-1">
-                <span className="text-amber-400">Бонус:</span> +5% Instant Conversion.
-                Критически важна, чтобы рюкзак не заполнялся слишком быстро.
+                <span className="text-amber-400">Бонус:</span> +5% Honey Per Pollen.
+                Чистый прирост к фарму меда.
               </p>
             </li>
             <li className="pl-6 relative">

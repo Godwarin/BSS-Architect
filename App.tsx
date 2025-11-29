@@ -19,6 +19,7 @@ const App: React.FC = () => {
     boots: "None", 
     belt: "None",
     guards: "None",
+    tool: "None",
     ssa_passive_1: "None", 
     ssa_passive_2: "None"
   });
@@ -261,6 +262,17 @@ const App: React.FC = () => {
                         >
                         {GEAR_OPTIONS.bags.map(m => <option key={m} value={m}>{m}</option>)}
                         </select>
+                    </div>
+
+                    <div>
+                      <label className="text-[10px] text-slate-500 uppercase">Инструмент (Tool)</label>
+                      <select 
+                      className="w-full bg-slate-800 border border-slate-700 rounded p-1 text-xs text-slate-300"
+                      value={gear.tool || 'None'}
+                      onChange={(e) => setGear({...gear, tool: e.target.value})}
+                      >
+                      {(GEAR_OPTIONS as any).tools.map((m: string) => <option key={m} value={m}>{m}</option>)}
+                      </select>
                     </div>
 
                     <div>

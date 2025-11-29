@@ -65,11 +65,7 @@ export const AdvisorPanel: React.FC<AdvisorPanelProps> = ({ hive, gear }) => {
   }
 
   // Photon Bee
-  if (counts['Tabby Bee'] && !counts['Photon Bee']) {
-    adviceList.push({ title: 'Купите Photon Bee', desc: 'Следующая после Tabby за 500 билетов.', priority: 'medium', done: false });
-  } else if (counts['Photon Bee'] && giftedCounts['Tabby Bee'] && !giftedCounts['Photon Bee']) {
-    adviceList.push({ title: 'Сделайте Photon Bee Одаренной', desc: 'Приоритет №2 для Star Treat. +5% Instant Conversion спасает рюкзак от переполнения.', priority: 'high', done: false });
-  }
+  // Photon Bee removed from recommendations
 
   // --- 3. ESSENTIAL GIFTED BEES ---
 
