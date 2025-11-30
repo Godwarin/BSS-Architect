@@ -39,4 +39,4 @@ export interface GearState {
   ssa_passive_2: string;
 }
 
-export type Tab = 'hive' | 'analysis' | 'guide';
+export type Tab = 'hive' | 'analysis' | 'guide' | 'dev';

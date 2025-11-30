@@ -4,6 +4,7 @@ import { BEES, GEAR_OPTIONS, HIVE_PRESETS } from './constants';
 import { HiveGrid } from './components/HiveGrid';
 import { AnalysisPanel } from './components/AnalysisPanel';
 import { ProgressionGuide } from './components/ProgressionGuide';
+import DevAbout from './components/DevAbout';
 import { getRarityColor, exportHive } from './utils/hiveUtils';
 import { Save, Upload, Hexagon, BarChart3, BookOpen, Trash2, Sparkles, BrainCircuit, PaintBucket, LayoutTemplate } from 'lucide-react';
 
@@ -179,6 +180,12 @@ const App: React.FC = () => {
           >
             <BookOpen size={16} /> Справка
           </button>
+          <button 
+            onClick={() => setActiveTab('dev')}
+            className={`py-4 text-sm font-medium border-b-2 flex items-center gap-2 transition-colors whitespace-nowrap ${activeTab === 'dev' ? 'border-amber-500 text-amber-400' : 'border-transparent text-slate-400 hover:text-white'}`}
+          >
+            <BrainCircuit size={16} /> Разработка
+          </button>
         </div>
       </div>
 
@@ -347,6 +354,7 @@ const App: React.FC = () => {
         {/* Advisor tab removed */}
         {activeTab === 'analysis' && <AnalysisPanel hive={hive} gear={gear} />}
         {activeTab === 'guide' && <ProgressionGuide />}
+        {activeTab === 'dev' && <DevAbout />}
 
       </main>
     </div>

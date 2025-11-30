@@ -78,6 +78,29 @@ export const META_BUILDS: BuildTarget[] = [
     }
   },
   {
+    name: "Guiding alt",
+    description: "Guiding alt — специализация на бафах и токенах для поддержки. Ключевая одаренность: Stubborn Bee (gifted Stubborn). По факту важен сам хайв, а не конкретное снаряжение.",
+    requiredPassive: ["Guiding Star"],
+    recommendedGear: {
+      mask: "Не важно",
+      bag: "Не важно",
+      boots: "Не важно",
+      guards: "Не важно",
+      belt: "Не важно"
+    },
+    composition: {
+      "Riley Bee": 33,
+      "Shocked Bee": 5,
+      "Hasty Bee": 1,
+      "Buoyant Bee": 1,
+      "Stubborn Bee": 1,
+      "Bucko Bee": 1,
+      "Bumble Bee": 1,
+      "Festive Bee": 1,
+      "Windy Bee": 1
+    }
+  },
+  {
     name: "Red Hive (Attack/Boost)",
     description: "Активный стиль игры. Требует Scorching Star. Дорогой билд, нужен высокий уровень прокачки.",
     requiredPassive: ["Scorching Star", "Star Saw"],
@@ -172,7 +195,7 @@ export const META_BUILDS: BuildTarget[] = [
 ];
 
 export const GEAR_OPTIONS = {
-  masks: ["None", "Honey Mask", "Bubble Mask", "Fire Mask", "Gummy Mask", "Diamond Mask", "Demon Mask"],
+  masks: ["None", "Bubble Mask", "Fire Mask", "Gummy Mask", "Diamond Mask", "Demon Mask"],
   bags: ["None", "Porcelain Port-O-Hive", "Coconut Canister"],
   boots: ["None", "Gummy Boots", "Coconut Clogs"],
   belts: ["None", "Honeycomb Belt", "Petal Belt", "Coco Belt"],
@@ -181,7 +204,7 @@ export const GEAR_OPTIONS = {
 };
 
 // New tool items
-GEAR_OPTIONS['tools'] = ["None", "Porcelain Dipper", "Petal Wand", "Tide Popper", "Dark Scythe", "Gummyballer"];
+GEAR_OPTIONS['tools'] = ["None", "Porcelain Dipper", "Petal Belt", "Tide Popper", "Dark Scythe", "Gummyballer"];
 
 export const HIVE_PRESETS = {
   "Bleached Hive (Новичок)": Array(50).fill(null).map((_, i) => {
