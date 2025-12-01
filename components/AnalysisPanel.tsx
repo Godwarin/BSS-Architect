@@ -11,11 +11,12 @@ interface AnalysisPanelProps {
 
 export const AnalysisPanel: React.FC<AnalysisPanelProps> = ({ hive, gear }) => {
   const [selectedMeta, setSelectedMeta] = useState<BuildTarget>(META_BUILDS[0]);
-  const [category, setCategory] = useState<'endgame' | 'support'>('endgame');
+  const [category, setCategory] = useState<'endgame' | 'support' | 'midgame'>('endgame');
 
   const categories: Record<string, string[]> = {
     endgame: ["Blue Hive (Macro Meta)", "Red Hive (Attack/Boost)", "White Hive (RNG/Gummy)"],
-    support: ["Guiding alt", "Tad Alt (МАКРОС)", "Tad Alt (ATLAS)"]
+    support: ["Guiding alt", "Tad Alt (МАКРОС)", "Tad Alt (ATLAS)"],
+    midgame: ["Ninja Bee Hive (Midgame)"]
   };
 
   // When category changes, pick the first meta in that category as selected
@@ -105,6 +106,7 @@ export const AnalysisPanel: React.FC<AnalysisPanelProps> = ({ hive, gear }) => {
       {/* Category Selector */}
       <div className="flex gap-3 mb-4">
         <button onClick={() => setCategory('endgame')} className={`px-3 py-2 rounded ${category === 'endgame' ? 'bg-blue-600 text-white' : 'bg-slate-800 text-slate-300'}`}>End-game meta</button>
+        <button onClick={() => setCategory('midgame')} className={`px-3 py-2 rounded ${category === 'midgame' ? 'bg-yellow-600 text-white' : 'bg-slate-800 text-slate-300'}`}>Mid-game (хайвы для развития аккаунта)</button>
         <button onClick={() => setCategory('support')} className={`px-3 py-2 rounded ${category === 'support' ? 'bg-green-600 text-white' : 'bg-slate-800 text-slate-300'}`}>Support-alts</button>
       </div>
 

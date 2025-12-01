@@ -195,6 +195,42 @@ export const META_BUILDS: BuildTarget[] = [
       "Gummy Bee": 1
     }
   }
+  ,
+  {
+    name: "Ninja Bee Hive (Midgame)",
+    description: "Mid-game сборка для развития аккаунта — фокус на Ninja Bee и наборе полезных одарённых слотов.",
+    requiredPassive: [],
+    recommendedGear: {
+      mask: "Any",
+      bag: "Any",
+      boots: "Any",
+      guards: "Any",
+      belt: "Any"
+    },
+    composition: {
+      "Ninja Bee": 18,
+      "Diamond Bee": 5,
+      "Music Bee": 4,
+      "Baby Bee": 4,
+      "Shy Bee": 1,
+      "Exhausted Bee": 1,
+      "Frosty Bee": 1,
+      "Shocked Bee": 1,
+      "Commander Bee": 1,
+      "Bucko Bee": 1,
+      "Bumble Bee": 1,
+      "Stubborn Bee": 1,
+      "Looker Bee": 1,
+      "Bomber Bee": 1,
+      "Cool Bee": 1,
+      "Tabby Bee": 1,
+      "Cobalt Bee": 1,
+      "Gummy Bee": 1,
+      "Vector Bee": 1,
+      "Festive Bee": 1,
+      "Basic Bee": 1
+    }
+  }
 ];
 
 export const GEAR_OPTIONS = {
