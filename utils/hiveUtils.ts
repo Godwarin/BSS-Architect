@@ -24,8 +24,8 @@ export const getRarityColor = (rarity: Rarity) => {
 
 export const findBeeDef = (name: string) => BEES.find(b => b.name === name);
 
-export const exportHive = (hive: any, gear: any) => {
-  const data = JSON.stringify({ hive, gear }, null, 2);
+export const exportHive = (hive: any, gear: any, hiveLevel?: number) => {
+  const data = JSON.stringify({ hive, gear, hiveLevel }, null, 2);
   const blob = new Blob([data], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');

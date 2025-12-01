@@ -11,6 +11,19 @@ interface AnalysisPanelProps {
 
 export const AnalysisPanel: React.FC<AnalysisPanelProps> = ({ hive, gear }) => {
   const [selectedMeta, setSelectedMeta] = useState<BuildTarget>(META_BUILDS[0]);
+  const [category, setCategory] = useState<'endgame' | 'support'>('endgame');
+
+  const categories: Record<string, string[]> = {
+    endgame: ["Blue Hive (Macro Meta)", "Red Hive (Attack/Boost)", "White Hive (RNG/Gummy)"],
+    support: ["Guiding alt", "Tad Alt (МАКРОС)", "Tad Alt (ATLAS)"]
+  };
+
+  // When category changes, pick the first meta in that category as selected
+  React.useEffect(() => {
+    const names = categories[category] || [];
+    const first = META_BUILDS.find(m => names.includes(m.name));
+    if (first) setSelectedMeta(first);
+  }, [category]);
 
   // Calculate current counts
   const currentCounts: Record<string, number> = {};
@@ -89,9 +102,15 @@ export const AnalysisPanel: React.FC<AnalysisPanelProps> = ({ hive, gear }) => {
 
   return (
     <div className="space-y-6 animate-fadeIn">
+      {/* Category Selector */}
+      <div className="flex gap-3 mb-4">
+        <button onClick={() => setCategory('endgame')} className={`px-3 py-2 rounded ${category === 'endgame' ? 'bg-blue-600 text-white' : 'bg-slate-800 text-slate-300'}`}>End-game meta</button>
+        <button onClick={() => setCategory('support')} className={`px-3 py-2 rounded ${category === 'support' ? 'bg-green-600 text-white' : 'bg-slate-800 text-slate-300'}`}>Support-alts</button>
+      </div>
+
       {/* Target Selector */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {META_BUILDS.map((meta) => (
+        {META_BUILDS.filter(m => (categories[category] || []).includes(m.name)).map((meta) => (
           <button
             key={meta.name}
             onClick={() => setSelectedMeta(meta)}
@@ -112,8 +131,11 @@ export const AnalysisPanel: React.FC<AnalysisPanelProps> = ({ hive, gear }) => {
       <div className="bg-slate-800/50 p-4 rounded-lg border border-slate-700">
         <h3 className="text-xl font-bold text-slate-100 mb-2">{selectedMeta.name}</h3>
         <p className="text-slate-300 mb-4">{selectedMeta.description}</p>
-        <div className="text-sm text-slate-400">
-          Требуется SSA: <span className="text-amber-300 font-mono">{selectedMeta.requiredPassive.join(" + ")}</span>
+        <div className="text-sm text-slate-400 space-y-1">
+          <div>Требуется SSA: <span className="text-amber-300 font-mono">{selectedMeta.requiredPassive.join(" + ")}</span></div>
+          {typeof selectedMeta.minHiveLevel !== 'undefined' && (
+            <div>Минимальный уровень улья: <span className="text-amber-300 font-mono">{selectedMeta.minHiveLevel}</span></div>
+          )}
         </div>
       </div>
 

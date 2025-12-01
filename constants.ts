@@ -81,6 +81,7 @@ export const META_BUILDS: BuildTarget[] = [
     name: "Guiding alt",
     description: "Guiding alt — специализация на бафах и токенах для поддержки. Ключевая одаренность: Stubborn Bee (gifted Stubborn). По факту важен сам хайв, а не конкретное снаряжение.",
     requiredPassive: ["Guiding Star"],
+    minHiveLevel: 15,
     recommendedGear: {
       mask: "Не важно",
       bag: "Не важно",
@@ -152,6 +153,7 @@ export const META_BUILDS: BuildTarget[] = [
     name: "Tad Alt (МАКРОС)",
     description: "Твинк для помощи основе. Генерирует пузыри и токены.",
     requiredPassive: ["Pop Star", "Scorching Star"],
+    minHiveLevel: 16,
     recommendedGear: {
       mask: "Gummy Mask",
       bag: "Any", 
@@ -176,6 +178,7 @@ export const META_BUILDS: BuildTarget[] = [
     name: "Tad Alt (ATLAS)",
     description: "Максимальный спам лягушками. Все Tadpole и Fuzzy должны быть одаренными. Также осуждаю читы, этот билд просто мои мысли не более. я люблю онетта",
     requiredPassive: ["Pop Star", "Scorching Star"],
+    minHiveLevel: 16,
     recommendedGear: {
       mask: "Gummy Mask",
       bag: "Any",
@@ -237,3 +240,29 @@ export const HIVE_PRESETS = {
     return null; 
   })
 };
+
+// Mid game presets for account progression
+HIVE_PRESETS["Mid game (хайвы для развития аккаунта) - Ninja Bee Hive"] = (function(){
+  const arr: (string | null)[] = Array(50).fill(null);
+  let idx = 0;
+  // 18 Ninja Bee, 1 gifted
+  arr[idx++] = "Ninja Bee (g)";
+  for (let i=1;i<18;i++) arr[idx++] = "Ninja Bee";
+  // 5 Diamond Bee
+  for (let i=0;i<5;i++) arr[idx++] = "Diamond Bee";
+  // 4 Music Bee
+  for (let i=0;i<4;i++) arr[idx++] = "Music Bee";
+  // 4 Baby Bee
+  for (let i=0;i<4;i++) arr[idx++] = "Baby Bee";
+  // Singles (gifted where specified)
+  const singles = [
+    "Shy Bee (g)", "Exhausted Bee (g)", "Frosty Bee (g)", "Shocked Bee (g)", "Commander Bee (g)",
+    "Bucko Bee (g)", "Bumble Bee (g)", "Stubborn Bee (g)", "Looker Bee (g)", "Bomber Bee (g)",
+    "Cool Bee (g)", "Bumble Bee (g)", "Tabby Bee (g)", "Cobalt Bee", "Gummy Bee (g)",
+    "Vector Bee", "Festive Bee (g)", "Basic Bee (g)"
+  ];
+  singles.forEach(s => { if (idx < 50) arr[idx++] = s; });
+  // fill remaining with null
+  while (idx < 50) { arr[idx++] = null; }
+  return arr;
+})();

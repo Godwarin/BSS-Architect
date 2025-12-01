@@ -14,6 +14,7 @@ const App: React.FC = () => {
   const [hive, setHive] = useState<HiveSlot[]>(
     Array.from({ length: 50 }, (_, i) => ({ id: i, bee: null, gifted: false }))
   );
+  const [hiveLevel, setHiveLevel] = useState<number>(1);
   const [gear, setGear] = useState<GearState>({
     mask: "None", 
     bag: "None", 
@@ -41,6 +42,7 @@ const App: React.FC = () => {
           // Merge with default to handle new fields if loading old save
           setGear(prev => ({ ...prev, ...parsed.gear }));
         }
+        if (parsed.hiveLevel) setHiveLevel(parsed.hiveLevel);
       } catch (e) {
         console.error("Failed to load save", e);
       }
@@ -49,8 +51,8 @@ const App: React.FC = () => {
 
   // Save to local storage on change
   useEffect(() => {
-    localStorage.setItem('bss-hive-data', JSON.stringify({ hive, gear }));
-  }, [hive, gear]);
+    localStorage.setItem('bss-hive-data', JSON.stringify({ hive, gear, hiveLevel }));
+  }, [hive, gear, hiveLevel]);
 
   // Handlers
   const updateSlot = (id: number) => {
@@ -106,11 +108,13 @@ const App: React.FC = () => {
     if (confirm(`Загрузить шаблон "${presetName}"? Это заменит текущий улей.`)) {
       const presetBees = HIVE_PRESETS[presetName as keyof typeof HIVE_PRESETS];
       if (presetBees) {
-        setHive(prev => prev.map((s, idx) => ({ 
-          ...s, 
-          bee: presetBees[idx] || null, 
-          gifted: false 
-        })));
+        setHive(prev => prev.map((s, idx) => {
+          const raw = presetBees[idx];
+          if (!raw) return { ...s, bee: null, gifted: false };
+          const gifted = typeof raw === 'string' && raw.endsWith(' (g)');
+          const beeName = typeof raw === 'string' && gifted ? raw.replace(/ \(g\)$/, '') : raw as string;
+          return { ...s, bee: beeName || null, gifted: !!gifted };
+        }));
       }
     }
   };
@@ -147,7 +151,7 @@ const App: React.FC = () => {
           
           <div className="flex items-center gap-2">
             <button 
-              onClick={() => exportHive(hive, gear)}
+              onClick={() => exportHive(hive, gear, hiveLevel)}
               className="p-2 hover:bg-slate-800 rounded-lg text-slate-400 hover:text-white transition-colors" title="Скачать JSON">
               <Save size={20} />
             </button>
@@ -219,6 +223,10 @@ const App: React.FC = () => {
                     </button>
                  </div>
                  
+                 <div className="mt-3">
+                   <label className="text-[10px] text-slate-500 uppercase">Уровень улья</label>
+                   <input type="number" min={1} max={50} value={hiveLevel} onChange={(e) => setHiveLevel(Math.max(1, Math.min(50, Number(e.target.value) || 1)))} className="w-full bg-slate-800 border border-slate-700 rounded p-1 text-xs text-slate-300" />
+                 </div>
                  {/* Templates removed per request - presets are hidden */}
 
                  <button onClick={clearHive} className="text-xs text-red-500 hover:underline w-full text-center">
