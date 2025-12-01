@@ -243,26 +243,45 @@ export const HIVE_PRESETS = {
 
 // Mid game presets for account progression
 HIVE_PRESETS["Mid game (хайвы для развития аккаунта) - Ninja Bee Hive"] = (function(){
-  const arr: (string | null)[] = Array(50).fill(null);
-  let idx = 0;
-  // 18 Ninja Bee, 1 gifted
-  arr[idx++] = "Ninja Bee (g)";
-  for (let i=1;i<18;i++) arr[idx++] = "Ninja Bee";
+  const arr: (string | null)[] = [];
+  // 18 Ninja Bee (first one gifted)
+  arr.push("Ninja Bee (g)");
+  for (let i = 1; i < 18; i++) arr.push("Ninja Bee");
+
   // 5 Diamond Bee
-  for (let i=0;i<5;i++) arr[idx++] = "Diamond Bee";
+  for (let i = 0; i < 5; i++) arr.push("Diamond Bee");
+
   // 4 Music Bee
-  for (let i=0;i<4;i++) arr[idx++] = "Music Bee";
+  for (let i = 0; i < 4; i++) arr.push("Music Bee");
+
   // 4 Baby Bee
-  for (let i=0;i<4;i++) arr[idx++] = "Baby Bee";
+  for (let i = 0; i < 4; i++) arr.push("Baby Bee");
+
   // Singles (gifted where specified)
   const singles = [
-    "Shy Bee (g)", "Exhausted Bee (g)", "Frosty Bee (g)", "Shocked Bee (g)", "Commander Bee (g)",
-    "Bucko Bee (g)", "Bumble Bee (g)", "Stubborn Bee (g)", "Looker Bee (g)", "Bomber Bee (g)",
-    "Cool Bee (g)", "Bumble Bee (g)", "Tabby Bee (g)", "Cobalt Bee", "Gummy Bee (g)",
-    "Vector Bee", "Festive Bee (g)", "Basic Bee (g)"
+    "Shy Bee (g)",
+    "Exhausted Bee (g)",
+    "Frosty Bee (g)",
+    "Shocked Bee (g)",
+    "Commander Bee (g)",
+    "Bucko Bee (g)",
+    "Bumble Bee (g)",
+    "Stubborn Bee (g)",
+    "Looker Bee (g)",
+    "Bomber Bee (g)",
+    "Cool Bee (g)",
+    "Tabby Bee (g)",
+    "Cobalt Bee",
+    "Gummy Bee (g)",
+    "Vector Bee",
+    "Festive Bee (g)",
+    "Basic Bee (g)"
   ];
-  singles.forEach(s => { if (idx < 50) arr[idx++] = s; });
-  // fill remaining with null
-  while (idx < 50) { arr[idx++] = null; }
+
+  singles.forEach(s => arr.push(s));
+
+  // Fill remaining slots with null up to 50
+  while (arr.length < 50) arr.push(null);
+
   return arr;
 })();

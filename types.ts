@@ -26,6 +26,7 @@ export interface BuildTarget {
     bag?: string;
     tool?: string;
   };
+  minHiveLevel?: number;
 }
 
 export interface GearState {
