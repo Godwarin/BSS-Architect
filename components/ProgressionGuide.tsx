@@ -40,6 +40,42 @@ export const ProgressionGuide: React.FC = () => {
           </ol>
         </div>
       </section>
+      <EventBeeGiftPriority />
+      <GearProgressionPath />
+    </div>
+  );
+};
+
+export const EventBeeGiftPriority = () => (
+  <section>
+    <h2>Приоритет одарения ивентовых пчёл (Star Treat)</h2>
+    <ol>
+      <li><b>Tabby Bee</b><br/>Бонус: +50% Critical Power. ВСЕГДА первая. Основа любого улья.</li>
+      <li><b>Gummy Bee</b><br/>Бонус: +5% Honey Per Pollen. Чистый прирост к фарму меда.</li>
+      <li><b>Bear Bee</b><br/>Бонус: +10% pollen. Всегда приятно.</li>
+      <li><b>Vicious Bee</b><br/>Бонус: -15% Длительности респавна монстров + урон к шипам.</li>
+      <li><b>Festive Bee</b><br/>Бонус: ×1.25 convert rate at hive. Один из самых важных аспектов для любого игрока в early-mid game.</li>
+      <li><b>Puppy Bee</b><br/>Бонус: -20% Печенья на пчелу (меньше жрать будет).</li>
+      <li><b>Windy Bee</b><br/>Бонус: +15% install white conversion, ×2 усиление от облаков, белая пыльца везде, облака на рандомные поля, дают +50% pollen.</li>
+      <li><b>Digital Bee</b><br/>Бонус: +1% ability duplication chance. Одар на эту пчелу юзлесс если ты в синей.</li>
+    </ol>
+  </section>
+);
+
+export const GearProgressionPath = () => (
+  <section>
+    <h2>Путь развития снаряжения</h2>
+    <ol>
+      <li><b>Bubble Mask</b><br/>Первый серьёзный шаг. В начале используем синюю пыльцу, даёт много бустов для синей и пассивка Bubble Bombs делает её ещё лучше.</li>
+      <li><b>Cobalt Guard</b><br/>Увеличение вместимости синей пыльцы, критов и синих бомб — не заменима. Фармим от бомб на этом этапе.</li>
+      <li><b>Petal Belt</b><br/>Не жертвуйте первый лепесток (Petal) в храм! Скрафтите ремень Petal Belt.</li>
+      <li><b>Diamond Mask</b><br/>Усиление Bubble Mask в 2 раза. Мастхев на этом этапе, пассивка diamond drain даёт большой прирост к фарму.</li>
+      <li><b>SSA (Supreme Star Amulet)</b><br/>Требует 40 видов одарённых пчёл. Делайте уклон в синюю, выбивайте разные одарёнки.</li>
+      <li><b>Coco Canister</b><br/>Увеличение вместимости — важный шаг после SSA.</li>
+      <li><b>Coco Clogs</b><br/>Дополнительная скорость и суммарная полезность в поздней игре.</li>
+    </ol>
+  </section>
+);
 
       {/* Gear Progression */}
       <section className="bg-slate-900 border border-slate-700 rounded-xl overflow-hidden">
