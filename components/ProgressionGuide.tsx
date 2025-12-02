@@ -112,8 +112,6 @@ export const GearProgressionPath = () => (
         </div>
       </section>
 
-      {/* Meta Tips removed as requested */}
-
     </div>
   );
-};
+}
