@@ -3,7 +3,7 @@ import { HiveSlot, GearState, Tab } from './types';
 import { BEES, GEAR_OPTIONS, HIVE_PRESETS } from './constants';
 import { HiveGrid } from './components/HiveGrid';
 import { AnalysisPanel } from './components/AnalysisPanel';
-import { ProgressionGuide } from './components/ProgressionGuide';
+import ProgressionGuide from './components/ProgressionGuide';
 import DevAbout from './components/DevAbout';
 import { getRarityColor, exportHive } from './utils/hiveUtils';
 import { Save, Upload, Hexagon, BarChart3, BookOpen, Trash2, Sparkles, BrainCircuit, PaintBucket, LayoutTemplate } from 'lucide-react';
