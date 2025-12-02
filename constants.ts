@@ -236,14 +236,14 @@ export const META_BUILDS: BuildTarget[] = [
 export const GEAR_OPTIONS = {
   masks: ["None", "Bubble Mask", "Fire Mask", "Gummy Mask", "Diamond Mask", "Demon Mask"],
   bags: ["None", "Porcelain Port-O-Hive", "Coconut Canister"],
-  boots: ["None", "Gummy Boots", "Coconut Clogs"],
+  boots: ["None", "Gummy Boots", "Beekeeper's Boots", "Coconut Clogs"],
   belts: ["None", "Honeycomb Belt", "Petal Belt", "Coco Belt"],
-  guards: ["None", "Riley/Bucko Guards", "Crimson/Cobalt Guards", "Elite Red/Blue Guards"],
+  guards: ["None", "Elite Red/Blue Guards", "Riley/Bucko Guards", "Crimson/Cobalt Guards"],
   passives: ["None", "Pop Star", "Scorching Star", "Gummy Star", "Star Saw", "Star Shower", "Guiding Star"]
 };
 
 // New tool items
-GEAR_OPTIONS['tools'] = ["None", "Porcelain Dipper", "Petal Belt", "Tide Popper", "Dark Scythe", "Gummyballer"];
+GEAR_OPTIONS['tools'] = ["None", "Porcelain Dipper", "Petal Wand", "Tide Popper", "Dark Scythe", "Gummyballer"];
 
 export const HIVE_PRESETS = {
   "Bleached Hive (Новичок)": Array(50).fill(null).map((_, i) => {

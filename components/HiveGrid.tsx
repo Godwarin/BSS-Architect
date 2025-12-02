@@ -74,6 +74,11 @@ export const HiveGrid: React.FC<HiveGridProps> = ({
          <span className="w-2 h-2 bg-amber-500 rounded-full animate-pulse"></span>
          Зажмите мышку и проведите, чтобы "рисовать" пчелами
       </div>
+
+      {/* Filled count badge bottom-right */}
+      <div className="absolute right-3 bottom-3 bg-slate-800/80 border border-slate-700 text-slate-200 text-xs px-3 py-1 rounded">
+        {hive.filter(s => !!s.bee).length}/{hive.length}
+      </div>
     </div>
   );
 };

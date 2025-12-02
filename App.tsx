@@ -31,6 +31,19 @@ const App: React.FC = () => {
   const [isGiftedMode, setIsGiftedMode] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
 
+  // Place gifted bee into the first empty slot immediately
+  const placeGiftedBee = (beeName: string) => {
+    setHive(prev => {
+      const idx = prev.findIndex(s => !s.bee);
+      if (idx === -1) {
+        alert('Нет свободных слотов в улье');
+        return prev;
+      }
+      const next = prev.map((s, i) => i === idx ? { ...s, bee: beeName, gifted: true } : s);
+      return next;
+    });
+  };
+
   // Load from local storage on mount
   useEffect(() => {
     const saved = localStorage.getItem('bss-hive-data');
@@ -239,16 +252,17 @@ const App: React.FC = () => {
                 <h3 className="font-bold text-slate-400 uppercase text-xs tracking-wider mb-3">Палитра пчел</h3>
                 <div className="h-[300px] overflow-y-auto pr-2 space-y-1 custom-scrollbar">
                   {BEES.map(bee => (
-                    <button
-                      key={bee.name}
-                      onClick={() => { setSelectedBee(bee.name); setIsGiftedMode(false); }}
-                      className={`w-full text-left px-3 py-2 rounded text-sm transition-colors flex items-center justify-between
-                        ${selectedBee === bee.name ? 'bg-slate-700 ring-1 ring-amber-500' : 'hover:bg-slate-800'}
-                      `}
-                    >
-                      <span className={getRarityColor(bee.rarity)}>{bee.name}</span>
-                      <div className={`w-2 h-2 rounded-full ${bee.color === 'Red' ? 'bg-red-500' : bee.color === 'Blue' ? 'bg-blue-500' : 'bg-slate-500'}`}></div>
-                    </button>
+                    <div key={bee.name} className={`w-full px-3 py-2 rounded text-sm transition-colors flex items-center justify-between ${selectedBee === bee.name ? 'bg-slate-700 ring-1 ring-amber-500' : 'hover:bg-slate-800'}`}>
+                      <button onClick={() => { setSelectedBee(bee.name); setIsGiftedMode(false); }} className="flex-1 text-left">
+                        <span className={getRarityColor(bee.rarity)}>{bee.name}</span>
+                      </button>
+                      <div className="flex items-center gap-2">
+                        <div className={`w-2 h-2 rounded-full ${bee.color === 'Red' ? 'bg-red-500' : bee.color === 'Blue' ? 'bg-blue-500' : 'bg-slate-500'}`}></div>
+                        <button title="Поставить одарённую" onClick={(e) => { e.stopPropagation(); placeGiftedBee(bee.name); }} className="p-1 rounded hover:bg-slate-800">
+                          <Sparkles size={14} />
+                        </button>
+                      </div>
+                    </div>
                   ))}
                 </div>
               </div>
