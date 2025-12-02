@@ -66,15 +66,22 @@ export const META_BUILDS: BuildTarget[] = [
       tool: "Tide Popper"
     },
     composition: {
-      "Buoyant Bee": 18,
-      "Tadpole Bee": 10,
+      "Buoyant Bee": 16,
+      "Tadpole Bee": 7,
       "Tabby Bee": 1,
       "Bear Bee": 1,
       "Gummy Bee": 1,
-      "Vicious Bee": 1,
       "Windy Bee": 1,
-      "Digital Bee": 1,
       "Music Bee": 4,
+      "Bumble Bee": 1,
+      "Cool Bee": 1,
+      "Commander Bee": 1,
+      "Exhausted Bee": 1,
+      "Bubble Bee": 1,
+      "Bucko Bee": 1,
+      "Ninja Bee": 1,
+      "Festive Bee": 1,
+      "Basic Bee": 1
     }
   },
   {
@@ -113,16 +120,22 @@ export const META_BUILDS: BuildTarget[] = [
       belt: "Petal Belt"
     },
     composition: {
-      "Precise Bee": 12,
+      "Precise Bee": 11,
       "Spicy Bee": 10,
-      "Vector Bee": 4,
+      "Vector Bee": 11,
       "Tabby Bee": 1,
       "Bear Bee": 1,
       "Digital Bee": 1,
-      "Festive Bee": 1,
       "Crimson Bee": 1,
-      "Baby Bee": 3,
-      "Music Bee": 3
+      "Tadpole Bee": 4,
+      "Buoyant Bee": 1,
+      "Carpenter Bee": 1,
+      "Riley Bee": 2,
+      "Commander Bee": 1,
+      "Hasty Bee": 1,
+      "Rad Bee": 1,
+      "Photon Bee": 1,
+      "Basic Bee": 1
     }
   },
   {
@@ -137,16 +150,30 @@ export const META_BUILDS: BuildTarget[] = [
       belt: "Petal Belt"
     },
     composition: {
-      "Vector Bee": 22,
-      "Fuzzy Bee": 4,
-      "Precise Bee": 4,
+      "Vector Bee": 19,
+      "Fuzzy Bee": 0,
+      "Precise Bee": 8,
       "Tabby Bee": 1,
       "Bear Bee": 1,
       "Gummy Bee": 1,
       "Windy Bee": 1,
       "Digital Bee": 1,
-      "Festive Bee": 1,
-      "Music Bee": 4
+      "Music Bee": 1,
+      "Tadpole Bee": 3,
+      "Baby Bee": 1,
+      "Lion Bee": 1,
+      "Carpenter Bee": 1,
+      "Honey Bee": 2,
+      "Shocked Bee": 1,
+      "Commander Bee": 1,
+      "Demo Bee": 1,
+      "Hasty Bee": 1,
+      "Stubborn Bee": 1,
+      "Looker Bee": 1,
+      "Brave Bee": 1,
+      "Photon Bee": 1,
+      "Puppy Bee": 1,
+      "Basic Bee": 1
     }
   },
   {
