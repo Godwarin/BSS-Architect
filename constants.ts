@@ -56,13 +56,13 @@ export const META_BUILDS: BuildTarget[] = [
   {
     name: "Blue Hive (Macro Meta)",
     description: "Лучший выбор для фарма меда через макрос (AFK). Дешевый в сборке. Основной упор на пузыри (Bubbles) и шары (Balloons).",
-    requiredPassive: ["Pop Star"],
+      requiredPassive: ["Pop Star", "Star Shower"],
     recommendedGear: {
       mask: "Diamond Mask",
       bag: "Coconut Canister",
-      boots: "Coconut Clogs",
-      guards: "Crimson/Cobalt Guards",
-      belt: "Petal Belt",
+        boots: "Gummy Boots",
+        guards: "Crimson/Cobalt Guards",
+        belt: "Coco Belt",
       tool: "Tide Popper"
     },
     composition: {
@@ -115,9 +115,10 @@ export const META_BUILDS: BuildTarget[] = [
     recommendedGear: {
       mask: "Demon Mask",
       bag: "Coconut Canister",
-      boots: "Coconut Clogs",
-      guards: "Crimson/Cobalt Guards",
-      belt: "Petal Belt"
+        boots: "Gummy Boots",
+        guards: "Crimson/Cobalt Guards",
+        belt: "Coco Belt",
+        tool: "Dark Scythe"
     },
     composition: {
       "Precise Bee": 11,
@@ -141,13 +142,13 @@ export const META_BUILDS: BuildTarget[] = [
   {
     name: "White Hive (RNG/Gummy)",
     description: "Самый дорогой улей. Требует двойной пассивки (Gummy + Saw) и много ресурсов. Завязан на Gummy Star.",
-    requiredPassive: ["Pop Star", "Gummy Star", "Star Saw"],
+      requiredPassive: ["Gummy Star", "Star Saw"],
     recommendedGear: {
       mask: "Gummy Mask",
       bag: "Coconut Canister",
       boots: "Gummy Boots",
       guards: "Crimson/Cobalt Guards",
-      belt: "Petal Belt"
+        belt: "Coco Belt"
     },
     composition: {
       "Vector Bee": 19,
